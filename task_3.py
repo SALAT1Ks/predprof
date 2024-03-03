@@ -12,7 +12,7 @@ def read_csv_file(file_path):
     """
     with open(file_path, encoding='UTF-8') as file:
         lines = file.read().split('\n')
-        return [line.split('\t') for line in lines]
+        return [line.split(',') for line in lines]
 
 def linear_search(arr, target):
     """
@@ -26,22 +26,23 @@ def linear_search(arr, target):
         None
     """
     for i in range(len(arr)):
-        if arr[i][0] == target:
-            print(f'{arr[i][0]} {str(arr[i][1])[0]} {arr[i][3]} {arr[i][2]} {arr[i][4]}')
+        if arr[i][0] == target :
+            name = arr[i][1].split(' ')
+            print(f'Проект № {arr[i][0]} делал: {name[1][0]}. {name[0]} он(а) получил(а) оценку - {arr[i][4]}.')
 
 def main():
     """
     Основная функция для обработки данных студентов из CSV-файла.
     """
-    file_path = "C:/Users/oppoe/Downloads/9.csv"
+    file_path = "C:/Users/oppoe/Downloads/students (1).csv"
     data = read_csv_file(file_path)
-
+    print(data)
     while True:
-        surname = input()
-        if surname == 'СТОП':
+        id_project = input()
+        if id_project == 'СТОП':
             break
         else:
-            linear_search(data, surname)
+            linear_search(data, id_project)
 
 if __name__ == "__main__":
     main()
