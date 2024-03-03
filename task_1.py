@@ -13,35 +13,38 @@ def read_csv_file(file_path):
     """
     with open(file_path, encoding='UTF-8') as file:
         lines = file.read().split('\n')
-        return [line.split('\t') for line in lines]
+        return [line.split(',') for line in lines]
 
 
 def main():
     """
     Основная функция для обработки данных студентов из CSV-файла.
     """
-    file_path = "C:/Users/oppoe/Downloads/9.csv"
+    file_path = "C:/Users/oppoe/Downloads/students (1).csv"
     data = read_csv_file(file_path)
+    print(data)
 
     student_scores = []
     subject = ''
     grade = ''
 
     # Поиск оценок студента Колесниковой Ксении
-    for row in data:
-        if row[0] == 'Колесникова' and row[1] == 'Ксения':
-            print(f'Ты получил: {row[4]}, за предмет {row[3]}')
-            subject = row[3]
-            grade = row[2]
+    for row in range(len(data)):
+        if 'Хадаров Владимир' in data[row][1]:
+            print(f'Ты получил: {data[row][-1]}, за проект {data[row][2]}')
+
+            clas = data[row][3]
+            break
 
     final_scores = []
     proverka_na_pystoe_znachenye = ['']
     # Подсчет средней оценки по указанному предмету и классу
-    for row in data:
-        if row == proverka_na_pystoe_znachenye:
+    for row in range(len(data)):
+        if data[row] == proverka_na_pystoe_znachenye:
             break
-        elif row[2] == grade and row[3] == subject:
-            final_scores.append(int(row[4]))
+        elif data[row][3] == clas:
+            print(data[row][4])
+            final_scores.append(int(data[row][4]))
 
     average_score = round(sum(final_scores) / len(final_scores), 3)
 
