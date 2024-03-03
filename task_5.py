@@ -1,6 +1,7 @@
 import csv
 
-# Функция для чтения CSV-файла и возвращения его содержимого в виде списка строк
+
+
 def read_csv_file(file_path):
     """
     Читает CSV-файл и возвращает его содержимое в виде списка строк.
@@ -15,17 +16,7 @@ def read_csv_file(file_path):
         lines = file.read().split('\n')
         return [line.split(',') for line in lines]
 
-# Функция для хэширования имени
 def hash(name):
-    """
-    Вычисляет хэш-код для строки.
-
-    Args:
-        name (str): Строка, для которой нужно вычислить хэш-код.
-
-    Returns:
-        int: Хэш-код строки.
-    """
     m = 10**9 + 9
     degree = 0
 
@@ -34,11 +25,11 @@ def hash(name):
 
     hash_score = 0
     for i in range(len(name)):
-        hash_score += (z[q.index(str(name[i]))] + 68**degree)
+        hash_score += (z[q.index(str(name[i]))] * 68**degree)
+        degree += 1
 
     return hash_score % m
 
-# Основная функция для обработки данных студентов из CSV-файла
 def main():
     """
     Основная функция для обработки данных студентов из CSV-файла.
@@ -46,27 +37,29 @@ def main():
     file_path = "C:/Users/oppoe/Downloads/students (1).csv"
     data = read_csv_file(file_path)
 
-    with open('students_with_hash.csv', 'a+', newline='') as file:
+    with open('students_with_hash.csv ', 'a+', newline='') as file:
         writer = csv.writer(file)
         sp_for_new = []
         for i in range(len(data)):
-            # Если текущая строка - заголовок, записываем новый заголовок
             if data[i] == ['id', 'Name', 'titleProject_id', 'class', 'score']:
-                first_row = ['name_hash', 'Name', 'titleProject_id', 'class', 'score']
-                writer.writerow(first_row)
+                writer.writerow(data[i])
                 continue
-            # Если текущая строка пустая, пропускаем её
             if data[i] == ['']:
                 continue
-            # Получаем хэш для имени и записываем данные во временный список
             sp_for_new.append(hash(data[i][1]))
             sp_for_new.append(data[i][1])
             sp_for_new.append(data[i][2])
             sp_for_new.append(data[i][3])
-            # Записываем данные из временного списка в файл
+            sp_for_new.append(data[i][4])
+            sp_for_new.append(data[i][5])
+            sp_for_new.append(data[i][6])
+            # Записываем данные в файл
+            print(sp_for_new)
+
             writer.writerow(sp_for_new)
             sp_for_new = []
 
-# Проверяем, что код выполняется как отдельный скрипт
+
+
 if __name__ == "__main__":
     main()
