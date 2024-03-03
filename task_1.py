@@ -43,7 +43,7 @@ def main():
         if data[row] == proverka_na_pystoe_znachenye:
             break
         elif data[row][3] == clas:
-            print(data[row][4])
+
             final_scores.append(int(data[row][4]))
 
     average_score = round(sum(final_scores) / len(final_scores), 3)
