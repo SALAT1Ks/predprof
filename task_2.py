@@ -13,7 +13,7 @@ def read_csv_file(file_path):
     """
     with open(file_path, encoding='UTF-8') as file:
         lines = file.read().split('\n')
-        return [line.split('\t') for line in lines]
+        return [line.split(',') for line in lines]
 
 def insertion_sort(arr):
     """
@@ -32,19 +32,21 @@ def insertion_sort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
+
     return arr[::-1]
 
 def main():
     """
     Основная функция для обработки данных студентов из CSV-файла.
     """
-    file_path = "C:/Users/oppoe/Downloads/9.csv"
+    file_path = "C:/Users/oppoe/Downloads/students (1).csv"
     data = read_csv_file(file_path)
+    print(data)
     data = insertion_sort(data)
-
+    print(data)
     number_winner = 1
     for i in range(len(data)):
-        if data[i][2] == '10':
+        if '10' in data[i][3]:
             print(f'{number_winner} место {data[i][1]} {data[i][0]}')
             number_winner += 1
         elif number_winner == 4:
