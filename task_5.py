@@ -17,6 +17,15 @@ def read_csv_file(file_path):
         return [line.split(',') for line in lines]
 
 def hash(name):
+        """
+    Подаётся ФИО человека
+
+    Args:
+        str: ФИО
+
+    Returns:
+        int: ХЭШ ФИО
+    """
     m = 10**9 + 9
     degree = 0
 
