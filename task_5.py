@@ -35,9 +35,9 @@ def main():
     Основная функция для обработки данных студентов из CSV-файла.
     """
     file_path = "C:/Users/oppoe/Downloads/students (1).csv"
-    data = read_csv_file(file_path)
+    data = read_csv_file(file_path)[:-1]
 
-    with open('students_with_hash.csv ', 'a+', newline='') as file:
+    with open('students_with_hash.csv ', 'a+', newline='', encoding='Utf-8') as file:
         writer = csv.writer(file)
         sp_for_new = []
         for i in range(len(data)):
