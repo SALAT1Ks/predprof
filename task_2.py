@@ -25,6 +25,8 @@ def insertion_sort(arr):
     Returns:
         list: Отсортированный список.
     """
+
+
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
@@ -40,14 +42,16 @@ def main():
     Основная функция для обработки данных студентов из CSV-файла.
     """
     file_path = "C:/Users/oppoe/Downloads/students (1).csv"
-    data = read_csv_file(file_path)
-    print(data)
+    data = read_csv_file(file_path)[:-1]
+
     data = insertion_sort(data)
-    print(data)
+
     number_winner = 1
+    print('10 класс:')
     for i in range(len(data)):
         if '10' in data[i][3]:
-            print(f'{number_winner} место {data[i][1]} {data[i][0]}')
+            name = data[i][1].split(' ')
+            print(f'{number_winner} место {name[1][0]}. {name[0]}')
             number_winner += 1
         elif number_winner == 4:
             break
